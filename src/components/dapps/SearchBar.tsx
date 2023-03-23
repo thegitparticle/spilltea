@@ -10,6 +10,10 @@ export default function SearchBar() {
 		target: { value: React.SetStateAction<string> };
 	}) => {
 		setSearchString(event.target.value);
+
+		if (event.target.value.length === 0) {
+			clearSearch();
+		}
 	};
 
 	const handleSearch = () => {
@@ -21,6 +25,11 @@ export default function SearchBar() {
 
 			filterState.setFilter(filter);
 		}
+	};
+
+	const clearSearch = () => {
+		setSearchString("");
+		filterState.setFilter({ searchString: "", chainId: 0 });
 	};
 
 	return (
