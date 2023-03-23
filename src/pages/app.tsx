@@ -1,5 +1,7 @@
+import DappThumbnail from "@/components/dapps/DappThumbnail";
 import AppRoot from "@/components/layouts/AppRoot";
 import { getDapps } from "@/network/getDapps";
+import { Dapp } from "@/types/dapp";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -18,11 +20,13 @@ export default function App() {
 
 	return (
 		<AppRoot>
-			<div className="flex flex-col items-center">
-				<button className="btn rounded-full font-display">
-					welcome to spill tea!
-				</button>
-				<p>share your web3 stack and show off your explorations</p>
+			<div className="flex flex-col items-center grow">
+				<div className="grid grid-cols-3 gap-4 my-8">
+					{data &&
+						data.response.map((dapp: Dapp, key: number) => (
+							<DappThumbnail dapp={dapp} key={key} />
+						))}
+				</div>
 			</div>
 		</AppRoot>
 	);
