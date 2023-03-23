@@ -1,32 +1,22 @@
-import DappThumbnail from "@/components/dapps/DappThumbnail";
+import AllDapps from "@/components/dapps/AllDapps";
+import FilteredDapps from "@/components/dapps/FilteredDapps";
+import SearchBar from "@/components/dapps/SearchBar";
 import AppRoot from "@/components/layouts/AppRoot";
-import { getDapps } from "@/network/getDapps";
-import { Dapp } from "@/types/dapp";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useFilterState } from "@/state/filterState";
 
 export default function App() {
-	const { data } = useQuery({
-		queryKey: ["dappsList"],
-		queryFn: getDapps,
-	});
-
-	useEffect(() => {
-		console.log("effect called");
-		if (data) {
-			console.log(data);
-		}
-	}, [data]);
+	const filterState = useFilterState();
 
 	return (
 		<AppRoot>
 			<div className="flex flex-col items-center grow">
-				<div className="grid grid-cols-3 gap-4 my-8">
-					{data &&
-						data.response.map((dapp: Dapp, key: number) => (
-							<DappThumbnail dapp={dapp} key={key} />
-						))}
-				</div>
+				<SearchBar />
+				{filterState.filter.chainId !== 0 ||
+				filterState.filter.searchString.length > 0 ? (
+					<FilteredDapps />
+				) : (
+					<AllDapps />
+				)}
 			</div>
 		</AppRoot>
 	);
