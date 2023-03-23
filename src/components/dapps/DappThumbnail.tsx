@@ -1,3 +1,4 @@
+import { chainsList } from "@/info/chains";
 import { Dapp } from "@/types/dapp";
 
 export interface DappThumbnailProps {
@@ -18,16 +19,31 @@ export default function DappThumbnail(props: DappThumbnailProps) {
 			<div className="card-body">
 				<h2 className="card-title">
 					{props.dapp.name}
-					<div className="badge badge-secondary">
+					{/* <div className="badge badge-secondary">
 						{props.dapp.chains
 							? props.dapp.chains[0]
 							: "unknown chain"}
-					</div>
+					</div> */}
 				</h2>
 				<p>{props.dapp.description.substring(0, 200)}</p>
 				<div className="card-actions justify-end">
-					<div className="badge badge-outline">Fashion</div>
-					<div className="badge badge-outline">Products</div>
+					{props.dapp.chains
+						? props.dapp.chains.map((chainId, key) => {
+								return (
+									<div
+										key={key}
+										className="badge badge-outline"
+									>
+										{
+											chainsList.find(
+												(chain) =>
+													chain.chainId === chainId
+											)?.name
+										}
+									</div>
+								);
+						  })
+						: null}
 				</div>
 			</div>
 		</div>

@@ -5,7 +5,7 @@ export const getDapps = async () => {
 	};
 
 	const dappsList = await fetch(
-		"https://api-a.meroku.store/dapp?page=2&limit=100&chainId=1",
+		"https://api-a.meroku.store/dapp?page=1&limit=100",
 		options
 	);
 
