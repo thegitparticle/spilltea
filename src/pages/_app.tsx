@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import { Albert_Sans } from "next/font/google";
-import Head from "next/head";
 
 const albertSans = Albert_Sans({
 	variable: "--font-albert-sans",
@@ -23,6 +23,8 @@ function HeadMetaData() {
 	);
 }
 
+const queryClient = new QueryClient();
+
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
@@ -32,7 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
 				}
 			`}</style>
 			<HeadMetaData />
-			<Component {...pageProps} />
+			<QueryClientProvider client={queryClient}>
+				<Component {...pageProps} />
+			</QueryClientProvider>
 		</>
 	);
 }
