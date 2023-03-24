@@ -6,8 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const { method } = req;
 	switch (method) {
 		case "GET":
-			req.session.destroy();
-			res.send({ ok: true });
+			res.send({ address: req.session.siwe?.address });
 			break;
 		default:
 			res.setHeader("Allow", ["GET"]);

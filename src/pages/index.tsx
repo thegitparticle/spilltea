@@ -1,3 +1,4 @@
+import { Profile } from "@/components/auth/Profile";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Router, useRouter } from "next/router";
 
@@ -38,6 +39,7 @@ export default function Home() {
 			</div>
 			<div className="my-8">
 				<ConnectButton />
+				<Profile />
 			</div>
 		</main>
 	);
