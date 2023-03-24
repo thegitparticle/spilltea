@@ -8,7 +8,7 @@ export default function AppRoot({ children }) {
 	}
 
 	return (
-		<main className="flex flex-1 flex-col h-min-screen">
+		<main className="flex flex-1 flex-col min-h-screen">
 			<NavBar />
 			{children}
 		</main>
