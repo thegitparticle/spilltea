@@ -1,23 +1,31 @@
-import AllDapps from "@/components/dapps/AllDapps";
-import FilteredDapps from "@/components/dapps/FilteredDapps";
-import SearchBar from "@/components/dapps/SearchBar";
 import AppRoot from "@/components/layouts/AppRoot";
-import { useFilterState } from "@/state/filterState";
+import MyStack from "@/components/stack/MyStack";
+import StackSteps from "@/components/stack/StackSteps";
+import { withSessionSsr } from "@/config/withsession";
+import { getUserDetails } from "@/network/getUserDetails";
+import { User } from "@/types/user";
+import { GetServerSideProps } from "next";
 
-export default function App() {
-	const filterState = useFilterState();
-
+export default function App({ userDetails }: { userDetails: User }) {
 	return (
 		<AppRoot>
 			<div className="flex flex-col items-center grow">
-				<SearchBar />
-				{filterState.filter.chainId !== 0 ||
-				filterState.filter.searchString.length > 0 ? (
-					<FilteredDapps />
+				{userDetails.published_stack ? (
+					<MyStack userDetails={userDetails} />
 				) : (
-					<AllDapps />
+					<StackSteps userDetails={userDetails} />
 				)}
 			</div>
 		</AppRoot>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = withSessionSsr(
+	async ({ req }: any) => {
+		const address = req.session.siwe?.address;
+
+		const userDetails = await getUserDetails(address);
+
+		return { props: { userDetails } };
+	}
+);
