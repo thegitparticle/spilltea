@@ -37,7 +37,7 @@ export default function Home() {
 					create a shareable link of your fav dapps in 3 small steps
 				</p>
 			</div>
-			<div className="my-8">
+			<div className="my-8 flex flex-col items-center">
 				<ConnectButton />
 				<Profile />
 			</div>

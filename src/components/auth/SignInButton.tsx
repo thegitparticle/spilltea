@@ -61,7 +61,7 @@ export default function SignInButton({
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ message, signature }),
+				body: JSON.stringify({ message, signature, address }),
 			});
 			if (!verifyRes.ok) throw new Error("Error verifying message");
 
