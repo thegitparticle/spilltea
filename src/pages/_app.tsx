@@ -6,13 +6,12 @@ import type { AppProps } from "next/app";
 import { Albert_Sans } from "next/font/google";
 
 import {
+	darkTheme,
 	getDefaultWallets,
 	RainbowKitProvider,
-	darkTheme,
-	midnightTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
+import { mainnet, optimism, polygon } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 

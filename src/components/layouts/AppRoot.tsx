@@ -1,8 +1,11 @@
+import { Profile } from "../auth/Profile";
+
 export default function AppRoot({ children }) {
 	function NavBar() {
 		return (
-			<div className="navbar bg-base-100">
+			<div className="navbar bg-base-100 flex flex-row justify-between">
 				<a className="btn btn-ghost normal-case text-xl">spillTea🧋</a>
+				<Profile />
 			</div>
 		);
 	}
