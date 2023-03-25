@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { Dapp } from "@/types/dapp";
 import { supabase } from "@/config/supabase";
 import { useRouter } from "next/router";
-import { DatePickerIOS } from "react-native";
 
 export default function SetStack({ userDetails }: { userDetails: User }) {
 	const router = useRouter();
