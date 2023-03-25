@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { supabase } from "@/config/supabase";
 import { User } from "@/types/user";
+import { useRouter } from "next/router";
 import PublishedStackList from "../published/PublishedStackList";
 
 export default function Publish({ userDetails }: { userDetails: User }) {
+	const router = useRouter();
+
 	function SpillTeaLink() {
 		return (
 			<div className="btn btn-active btn-base-100 mx-4 my-2">
@@ -30,8 +34,28 @@ export default function Publish({ userDetails }: { userDetails: User }) {
 	}
 
 	function PublishButton() {
+		function handlePublishStack() {
+			supabase
+				.from("user")
+				.update({ published_stack: true })
+				.eq("wallet_address", userDetails.wallet_address)
+				.then((res) => {
+					if (res.error) {
+						console.log("handle set username error", res.error);
+					} else {
+						console.log("handle set username works", res);
+						router.reload();
+					}
+				});
+		}
+
 		return (
-			<button className="btn btn-active btn-primary mx-4">Publish</button>
+			<button
+				className="btn btn-active btn-primary mx-4"
+				onClick={() => handlePublishStack()}
+			>
+				Publish
+			</button>
 		);
 	}
 
