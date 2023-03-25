@@ -5,7 +5,7 @@ import SetUsername from "./SetUsername";
 
 const userNameStepCopy = "create username";
 const stackStepCopy = "choose your web3 stack";
-const publishStepCopy = "customize & publish";
+const publishStepCopy = "preview & publish";
 
 export default function StackSteps({ userDetails }: { userDetails: User }) {
 	if (!userDetails.user_name) {
