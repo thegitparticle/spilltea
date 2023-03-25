@@ -3,7 +3,11 @@ import { Dapp } from "@/types/dapp";
 import { useQuery } from "@tanstack/react-query";
 import DappThumbnail from "./DappThumbnail";
 
-export default function AllDapps() {
+export default function AllDapps({
+	addDapp,
+}: {
+	addDapp: (args: { dapp: Dapp }) => void;
+}) {
 	const { data } = useQuery({
 		queryKey: ["dappsList"],
 		queryFn: getDapps,
@@ -12,7 +16,11 @@ export default function AllDapps() {
 		<div className="grid grid-cols-2 gap-6 my-8">
 			{data &&
 				data.response.map((dapp: Dapp, key: number) => (
-					<DappThumbnail dapp={dapp} key={key} />
+					<DappThumbnail
+						dapp={dapp}
+						key={key}
+						addDapp={() => addDapp({ dapp })}
+					/>
 				))}
 		</div>
 	);

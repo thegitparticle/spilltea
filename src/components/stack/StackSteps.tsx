@@ -55,8 +55,8 @@ export default function StackSteps({ userDetails }: { userDetails: User }) {
 					<li className="step step-error" data-content="?">
 						{publishStepCopy}
 					</li>
-					<Publish userDetails={userDetails} />
 				</ul>
+				<Publish userDetails={userDetails} />
 			</div>
 		);
 	} else {
