@@ -1,6 +1,10 @@
 import { Dapp } from "@/types/dapp";
 
-export const getDappDetails = async ({ queryKey }): Promise<Dapp[]> => {
+export const getDappDetails = async ({
+	queryKey,
+}: {
+	queryKey: any;
+}): Promise<Dapp[]> => {
 	const [_, dappId] = queryKey;
 
 	const options = {
