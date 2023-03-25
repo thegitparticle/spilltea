@@ -25,8 +25,8 @@ export default function SetUsername({ userDetails }: { userDetails: User }) {
 
 	function ENSName() {
 		const { data, isError, isLoading } = useEnsName({
-			// address: userDetails.wallet_address as `0x${string}`,
-			address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+			address: userDetails.wallet_address as `0x${string}`,
+			// address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
 		});
 
 		const [ensMatches, setEnsMatches] = useState<boolean | null>(null);
@@ -141,7 +141,7 @@ export default function SetUsername({ userDetails }: { userDetails: User }) {
 	}
 
 	return (
-		<div className="card w-4/6 bg-base-100 shadow-xl image-full">
+		<div className="card w-full bg-base-100 shadow-xl image-full">
 			<figure>
 				{/* <img
 					src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"

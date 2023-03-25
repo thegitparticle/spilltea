@@ -9,7 +9,7 @@ export default function AllDapps() {
 		queryFn: getDapps,
 	});
 	return (
-		<div className="grid grid-cols-3 gap-4 my-8">
+		<div className="grid grid-cols-2 gap-6 my-8">
 			{data &&
 				data.response.map((dapp: Dapp, key: number) => (
 					<DappThumbnail dapp={dapp} key={key} />

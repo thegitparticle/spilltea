@@ -11,7 +11,7 @@ export default function StackSteps({ userDetails }: { userDetails: User }) {
 	if (!userDetails.user_name) {
 		return (
 			<div className="flex flex-col items-center flex-wrap">
-				<ul className="steps my-16">
+				<ul className="steps my-8">
 					<li className="step step-error mx-32" data-content="?">
 						{userNameStepCopy}
 					</li>
@@ -28,9 +28,11 @@ export default function StackSteps({ userDetails }: { userDetails: User }) {
 	} else if (userDetails.user_name && !userDetails.top_ten_dapps) {
 		return (
 			<div className="flex flex-col items-center">
-				<ul className="steps my-16">
-					<li className="step step-info mx-32">{userNameStepCopy}</li>
-					<li className="step step-error" data-content="?">
+				<ul className="steps my-8">
+					<li className="step step-warning mx-32">
+						{userNameStepCopy}
+					</li>
+					<li className="step step-warning" data-content="?">
 						{stackStepCopy}
 					</li>
 					<li className="step" data-content="!">
@@ -47,7 +49,7 @@ export default function StackSteps({ userDetails }: { userDetails: User }) {
 	) {
 		return (
 			<div className="flex flex-col items-center">
-				<ul className="steps my-16">
+				<ul className="steps my-8">
 					<li className="step step-info mx-32">{userNameStepCopy}</li>
 					<li className="step step-info">{stackStepCopy}</li>
 					<li className="step step-error" data-content="?">
@@ -60,7 +62,7 @@ export default function StackSteps({ userDetails }: { userDetails: User }) {
 	} else {
 		return (
 			<div className="flex flex-col items-center">
-				<ul className="steps my-16">
+				<ul className="steps my-8">
 					<li className="step step-info mx-32">{userNameStepCopy}</li>
 					<li className="step step-info">{stackStepCopy}</li>
 					<li className="step step-info">{publishStepCopy}</li>
