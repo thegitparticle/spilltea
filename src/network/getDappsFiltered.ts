@@ -8,10 +8,16 @@ export const getDappsFiltered = async () => {
 
 	let filterState = useFilterState.getState().filter;
 
-	const dappsList = await fetch(
-		`https://api-a.meroku.store/dapp?limit=50&chainId${filterState.chainId}&search=${filterState.searchString}`,
-		options
-	);
+	const res = await fetch(`api/dapps/${filterState.searchString}`);
 
-	return dappsList.json();
+	const parsedResponse = await res.json();
+
+	const dappsList = parsedResponse.alldapps;
+
+	// const dappsList = await fetch(
+	// 	`https://api-a.meroku.store/dapp?limit=50&chainId${filterState.chainId}&search=${filterState.searchString}`,
+	// 	options
+	// );
+
+	return dappsList;
 };

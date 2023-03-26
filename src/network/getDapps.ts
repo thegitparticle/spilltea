@@ -1,13 +1,9 @@
 export const getDapps = async () => {
-	const options = {
-		method: "GET",
-		headers: { "Content-Type": "application/json" },
-	};
+	const res = await fetch("/api/dapps");
 
-	const dappsList = await fetch(
-		"https://api-a.meroku.store/dapp?page=1&limit=100",
-		options
-	);
+	const parsedResponse = await res.json();
 
-	return dappsList.json();
+	const dappsList = parsedResponse.alldapps;
+
+	return dappsList;
 };
