@@ -31,24 +31,35 @@ export const getServerSideProps: GetServerSideProps = withSessionSsr(
 	async ({ req }: any) => {
 		const address = req.session.siwe?.address;
 
+		if (address === undefined) {
+			return {
+				redirect: {
+					destination: "/",
+					permanent: false,
+				},
+			};
+		}
+
 		const userDetails = await getUserDetails(address);
 
 		let myDapps: Dapp[] = [];
 
-		for (const item of userDetails.top_ten_dapps) {
-			const options = {
-				method: "GET",
-				headers: { "Content-Type": "application/json" },
-			};
+		if (userDetails.top_ten_dapps !== null) {
+			for (const item of userDetails.top_ten_dapps) {
+				const options = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" },
+				};
 
-			const dappsDetails = await fetch(
-				`https://api-a.meroku.store/dapp/searchById?dappId=${item}`,
-				options
-			);
+				const dappsDetails = await fetch(
+					`https://api-a.meroku.store/dapp/searchById?dappId=${item}`,
+					options
+				);
 
-			const res = await dappsDetails.json();
+				const res = await dappsDetails.json();
 
-			myDapps.push(await res[0]);
+				myDapps.push(await res[0]);
+			}
 		}
 
 		return { props: { userDetails, myDapps } };

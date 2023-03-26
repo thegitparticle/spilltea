@@ -7,7 +7,7 @@ export const getUserDetails = async (address: string) => {
 		.eq("wallet_address", address);
 
 	if (error) {
-		console.log("error", error);
+		console.log("error fetching userDetails", error);
 		return [];
 	}
 
