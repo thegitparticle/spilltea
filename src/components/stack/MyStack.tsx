@@ -43,10 +43,17 @@ export default function MyStack({
 
 	function SpillTeaLink() {
 		return (
-			<div className="btn btn-active btn-base-100 mx-4 my-2">
+			<div
+				className="btn btn-active btn-base-100 mx-4 my-2"
+				onClick={() => {
+					navigator.clipboard
+						.writeText(`spilltea.xyz/${userDetails.user_name}
+			`);
+				}}
+			>
 				<div className="place-items-center flex flex-row">
 					<div className="text-base mx-2">
-						{userDetails.user_name}.spilltea.in
+						spilltea.xyz/{userDetails.user_name}
 					</div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
