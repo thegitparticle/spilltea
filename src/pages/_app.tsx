@@ -44,7 +44,6 @@ export default function App({ Component, pageProps }: AppProps) {
 			alchemyProvider({
 				apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY as string,
 			}),
-			publicProvider(),
 		]
 	);
 

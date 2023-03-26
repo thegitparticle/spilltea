@@ -29,6 +29,10 @@ export default function SetUsername({ userDetails }: { userDetails: User }) {
 			// address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
 		});
 
+		useEffect(() => {
+			console.log("ens", data, isError, isLoading);
+		}, [data, isError, isLoading]);
+
 		const [ensMatches, setEnsMatches] = useState<boolean | null>(null);
 
 		useEffect(() => {
@@ -47,7 +51,7 @@ export default function SetUsername({ userDetails }: { userDetails: User }) {
 					});
 			}
 
-			if (data) {
+			if (data !== null) {
 				checkEns();
 			}
 		}, [data]);

@@ -62,6 +62,11 @@ export const getServerSideProps: GetServerSideProps = withSessionSsr(
 			}
 		}
 
-		return { props: { userDetails, myDapps } };
+		return {
+			props: {
+				userDetails: JSON.parse(JSON.stringify(userDetails)),
+				myDapps,
+			},
+		};
 	}
 );
