@@ -15,7 +15,7 @@ export default function AllDapps({
 	return (
 		<div className="grid grid-cols-2 gap-6 my-8">
 			{data &&
-				data.response.map((dapp: Dapp, key: number) => (
+				data.map((dapp: Dapp, key: number) => (
 					<DappThumbnail
 						dapp={dapp}
 						key={key}

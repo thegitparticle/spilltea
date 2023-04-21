@@ -1,9 +1,12 @@
+import { supabase } from "@/config/supabase";
+
 export const getDapps = async () => {
-	const res = await fetch("/api/dapps");
+	const { data, error } = await supabase.from("dapps").select("*");
 
-	const parsedResponse = await res.json();
+	if (error) {
+		console.log("error fetching dapps", error);
+		return [];
+	}
 
-	const dappsList = parsedResponse.alldapps;
-
-	return dappsList;
+	return data![0].dapps_list;
 };
